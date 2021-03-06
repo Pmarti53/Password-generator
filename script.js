@@ -27,11 +27,26 @@ function generatePassword() {
         return;
 
     }
+    // prompt user with series of confirm for specific characters
+    var confirmLowerOptions = confirm("Click OK if you want lowercase letters in your password")
+    var confirmUpperOptions = confirm("Click OK if you want uppercase letters in your password")
+    var confirmNumberOptions = confirm("Click OK if you want a number in your password")
+    var confirmSpecialCharOptions = confirm("Click OK if you want special characters in your password")
 
+    while (confirmLowerOptions === false && confirmUpperOptions === false && confirmNumberOptions === false && confirmSpecialCharOptions === false) {
+        alert("You must choose one parameter");
+        var confirmLowerOptions = confirm("Click OK if you want lowercase letters in your password");
+        var confirmUpperOptions = confirm("Click OK if you want uppercase letters in your password");
+        var confirmNumberOptions = confirm("Click OK if you want a number in your password");
+        var confirmSpecialCharOptions = confirm("Click OK if you want special characters in your password");
 
-
+    }
 
     
+
+};
+
+
 
 
 
@@ -49,4 +64,3 @@ function generatePassword() {
 
 
 generateBtn.addEventListener("click", generatePassword);
-
