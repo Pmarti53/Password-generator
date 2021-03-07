@@ -62,12 +62,37 @@ function generatePassword() {
             passwordCharacters = passwordCharacters.concat(getRandomChar())
         }
         if (passwordCharacters.length > length) {
-            passwordCharacters.slice(0).length;
+            passwordCharacters.slice(1,length);
         }
     }
     console.log(passwordCharacters)
 
+    passwordText.textContent = passwordCharacters.join('')
+
 };
+
+//call functions
+
+function getRandomLower() {
+    var LowerOptions = 'abcdefghijklmnopqrstuvwxyz';
+    return LowerOptions[Math.floor(Math.random() * LowerOptions.length)];
+}
+
+function getRandomUpper() {
+    var UpperOptions = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    return UpperOptions[Math.floor(Math.random() * UpperOptions.length)];
+}
+
+function getRandomNumber() {
+    var NumberOptions = '0123456789';
+    return NumberOptions[Math.floor(Math.random() * NumberOptions.length)];
+}
+
+function getRandomChar() {
+    var SpecialCharOptions = '!"#$%&()*+,-./:;<=>?@[\]_{|}~';
+    return SpecialCharOptions[Math.floor(Math.random() * SpecialCharOptions.length)];
+}
+
 
 
 
