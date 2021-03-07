@@ -1,19 +1,12 @@
 // Assignment Code
 var passwordText = document.getElementById("password");
 var generateBtn = document.querySelector("#generate");
-var length;
-var LowerOptions = ['abcdefghijklmnopqrstuvwxyz'];
-var UpperOptions = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
-var NumberOptions = ['0123456789'];
-var SpecialCharOptions = ['!"#$%&()*+,-./:;<=>?@[\]_{|}~'];
+var LowerOptions = 'abcdefghijklmnopqrstuvwxyz';
+var UpperOptions = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var NumberOptions = '0123456789';
+var SpecialCharOptions = '!"#$%&()*+,-./:;<=>?@[\]_{|}~';
 
-var confirmLength = "";
-var confirmLowerOptions;
-var confirmUpperOptions;
-var confirmNumberOptions;
-var confrimSpecialCharOptions;
 
-//TODO declare your function
 
 function generatePassword() {
     // prompt user to select number between 8-128. if they do not choose a number in that range, then call the function again. make sure to store answer length. Return length.
@@ -24,7 +17,7 @@ function generatePassword() {
     }
     if (isNaN(length) === true) {
         alert('incorrect number try again')
-        return;
+        // return generatePassword();
 
     }
     // prompt user with series of confirm for specific characters
@@ -42,73 +35,40 @@ function generatePassword() {
 
     }
 
-    var passwordCharacters = []
 
-    while (passwordCharacters.length < length) {
 
-        if (confirmLowerOptions) {
-            passwordCharacters = passwordCharacters.concat(getRandomLower())
-        }
 
-        if (confirmUpperOptions) {
-            passwordCharacters = passwordCharacters.concat(getRandomUpper())
-        }
 
-        if (confirmNumberOptions) {
-            passwordCharacters = passwordCharacters.concat(getRandomNumber())
-        }
 
-        if (confirmSpecialCharOptions) {
-            passwordCharacters = passwordCharacters.concat(getRandomChar())
-        }
-        if (passwordCharacters.length > length) {
-            passwordCharacters.slice(1,length);
-        }
+getRandomPassword(confirmLowerOptions, confirmUpperOptions, confirmNumberOptions, confirmSpecialCharOptions, length);
+
+}; 
+
+function getRandomPassword(lower, upper, number, special, length) {
+    var chosenCharacters = "";
+    if(lower === true) {
+        chosenCharacters = chosenCharacters + LowerOptions;
     }
-    console.log(passwordCharacters)
 
-    passwordText.textContent = passwordCharacters.join('')
+    if(upper === true) {
+        chosenCharacters = chosenCharacters + UpperOptions;
+    }
+    
+    if(number === true) {
+        chosenCharacters = chosenCharacters + NumberOptions;
+    }
 
+    if(special === true) {
+        chosenCharacters = chosenCharacters + SpecialCharOptions;
+    }
+    console.log(chosenCharacters)
+var password = "";
+    for( var i = 0; i < length; i++) {
+        var random = chosenCharacters[Math.floor(Math.random() * chosenCharacters.length)];
+        password =  random + password;
+    }
+    passwordText.textContent = password;
 };
-
-//call functions
-
-function getRandomLower() {
-    var LowerOptions = 'abcdefghijklmnopqrstuvwxyz';
-    return LowerOptions[Math.floor(Math.random() * LowerOptions.length)];
-}
-
-function getRandomUpper() {
-    var UpperOptions = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    return UpperOptions[Math.floor(Math.random() * UpperOptions.length)];
-}
-
-function getRandomNumber() {
-    var NumberOptions = '0123456789';
-    return NumberOptions[Math.floor(Math.random() * NumberOptions.length)];
-}
-
-function getRandomChar() {
-    var SpecialCharOptions = '!"#$%&()*+,-./:;<=>?@[\]_{|}~';
-    return SpecialCharOptions[Math.floor(Math.random() * SpecialCharOptions.length)];
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 generateBtn.addEventListener("click", generatePassword);
