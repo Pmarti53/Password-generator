@@ -42,7 +42,30 @@ function generatePassword() {
 
     }
 
-    
+    var passwordCharacters = []
+
+    while (passwordCharacters.length < length) {
+
+        if (confirmLowerOptions) {
+            passwordCharacters = passwordCharacters.concat(getRandomLower())
+        }
+
+        if (confirmUpperOptions) {
+            passwordCharacters = passwordCharacters.concat(getRandomUpper())
+        }
+
+        if (confirmNumberOptions) {
+            passwordCharacters = passwordCharacters.concat(getRandomNumber())
+        }
+
+        if (confirmSpecialCharOptions) {
+            passwordCharacters = passwordCharacters.concat(getRandomChar())
+        }
+        if (passwordCharacters.length > length) {
+            passwordCharacters.slice(0).length;
+        }
+    }
+    console.log(passwordCharacters)
 
 };
 
